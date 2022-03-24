@@ -77,7 +77,5 @@ namespace ExemploPOO
             get { return this.email; }
             set { this.email = value; }
         }
-        
-
     }
 }

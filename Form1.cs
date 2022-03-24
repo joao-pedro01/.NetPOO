@@ -2,25 +2,28 @@ namespace ExemploPOO
 {
     public partial class Form1 : Form
     {
+        private TIPOPESSOA tipo;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void maskedTextBox4_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         private void btnEnviar_Click_1(object sender, EventArgs e)
         {
             //(string _nome, string _rg, string _cpf, string _email)
-            string nome = txtNome.Text;
+            Aluno aluno = new Aluno();
+
+            if (tipo == TIPOPESSOA.ALUNO)
+            {
+                aluno = new Aluno() {
+                    NOME = txtNome.Text,
+                    EMAIL = txtEmail.Text,
+                    CPF = txtCpf.Text,
+                    CURSO = txtCurso.Text,
+                    RA = txtRa.Text
+                };
+            }
 
             Pessoa pessoa = new Pessoa(txtNome.Text, txtRg.Text, txtCpf.Text, txtEmail.Text);
 
@@ -32,12 +35,36 @@ namespace ExemploPOO
             label1.Text = "\nNome: " + pessoa.NOME + "\nE-mail: " + pessoa.EMAIL + "\nRG: " + pessoa.RG + "\nCPF: " + pessoa.CPF;
         }
 
-        private void label9_Click(object sender, EventArgs e)
+        private void rbAluno_CheckedChanged(object sender, EventArgs e)
         {
-
+            validaPessoa();
         }
 
-        private void label11_Click(object sender, EventArgs e)
+        private void rbProfessor_CheckedChanged(object sender, EventArgs e)
+        {
+            validaPessoa();
+        }
+
+        private void validaPessoa()
+        {
+            const int aluno = 1;
+            const int professor = 2;
+
+            if(rbAluno.Checked == true)
+            {
+                pnProfessor.Visible = false;
+                pnAluno.Visible = true;
+                this.tipo = TIPOPESSOA.ALUNO;
+            }
+            else if(rbProfessor.Checked == true)
+            {
+                pnProfessor.Visible = true;
+                pnAluno.Visible = false;
+                this.tipo = TIPOPESSOA.PROFESSOR;
+            }
+        }
+
+        private void pnProfessor_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -34,8 +34,8 @@
             this.pnAluno = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtRa = new System.Windows.Forms.MaskedTextBox();
+            this.txtCurso = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pnProfessor = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -47,7 +47,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.MaskedTextBox();
             this.pnPessoa = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.painel = new System.Windows.Forms.GroupBox();
+            this.rbProfessor = new System.Windows.Forms.RadioButton();
+            this.rbAluno = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,6 +62,7 @@
             this.pnAluno.SuspendLayout();
             this.pnProfessor.SuspendLayout();
             this.pnPessoa.SuspendLayout();
+            this.painel.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -71,13 +74,14 @@
             // 
             this.pnAluno.Controls.Add(this.label9);
             this.pnAluno.Controls.Add(this.label10);
-            this.pnAluno.Controls.Add(this.maskedTextBox1);
-            this.pnAluno.Controls.Add(this.maskedTextBox2);
+            this.pnAluno.Controls.Add(this.txtRa);
+            this.pnAluno.Controls.Add(this.txtCurso);
             this.pnAluno.Controls.Add(this.label7);
             this.pnAluno.Location = new System.Drawing.Point(272, 12);
             this.pnAluno.Name = "pnAluno";
             this.pnAluno.Size = new System.Drawing.Size(249, 353);
             this.pnAluno.TabIndex = 9;
+            this.pnAluno.Visible = false;
             // 
             // label9
             // 
@@ -97,19 +101,19 @@
             this.label10.TabIndex = 16;
             this.label10.Text = "RA";
             // 
-            // maskedTextBox1
+            // txtRa
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(90, 43);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.maskedTextBox1.TabIndex = 18;
+            this.txtRa.Location = new System.Drawing.Point(90, 43);
+            this.txtRa.Name = "txtRa";
+            this.txtRa.Size = new System.Drawing.Size(100, 23);
+            this.txtRa.TabIndex = 18;
             // 
-            // maskedTextBox2
+            // txtCurso
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(90, 84);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(100, 23);
-            this.maskedTextBox2.TabIndex = 17;
+            this.txtCurso.Location = new System.Drawing.Point(90, 84);
+            this.txtCurso.Name = "txtCurso";
+            this.txtCurso.Size = new System.Drawing.Size(100, 23);
+            this.txtCurso.TabIndex = 17;
             // 
             // label7
             // 
@@ -132,13 +136,15 @@
             this.pnProfessor.Name = "pnProfessor";
             this.pnProfessor.Size = new System.Drawing.Size(252, 353);
             this.pnProfessor.TabIndex = 10;
+            this.pnProfessor.Visible = false;
+            this.pnProfessor.Paint += new System.Windows.Forms.PaintEventHandler(this.pnProfessor_Paint);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(37, 81);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(21, 15);
+            this.label11.Size = new System.Drawing.Size(60, 15);
             this.label11.TabIndex = 16;
             this.label11.Text = "Formação";
             // 
@@ -181,7 +187,6 @@
             this.txtRg.Name = "txtRg";
             this.txtRg.Size = new System.Drawing.Size(100, 23);
             this.txtRg.TabIndex = 5;
-            this.txtRg.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
             // label1
             // 
@@ -201,7 +206,7 @@
             // 
             // pnPessoa
             // 
-            this.pnPessoa.Controls.Add(this.groupBox2);
+            this.pnPessoa.Controls.Add(this.painel);
             this.pnPessoa.Controls.Add(this.label6);
             this.pnPessoa.Controls.Add(this.btnEnviar);
             this.pnPessoa.Controls.Add(this.label5);
@@ -217,14 +222,41 @@
             this.pnPessoa.Size = new System.Drawing.Size(273, 423);
             this.pnPessoa.TabIndex = 8;
             // 
-            // groupBox2
+            // painel
             // 
-            this.groupBox2.Location = new System.Drawing.Point(41, 265);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tipo de Pessoa";
+            this.painel.Controls.Add(this.rbProfessor);
+            this.painel.Controls.Add(this.rbAluno);
+            this.painel.Location = new System.Drawing.Point(41, 265);
+            this.painel.Name = "painel";
+            this.painel.Size = new System.Drawing.Size(200, 100);
+            this.painel.TabIndex = 17;
+            this.painel.TabStop = false;
+            this.painel.Tag = "";
+            this.painel.Text = "Tipo de Pessoa";
+            // 
+            // rbProfessor
+            // 
+            this.rbProfessor.AutoSize = true;
+            this.rbProfessor.Location = new System.Drawing.Point(6, 47);
+            this.rbProfessor.Name = "rbProfessor";
+            this.rbProfessor.Size = new System.Drawing.Size(74, 19);
+            this.rbProfessor.TabIndex = 20;
+            this.rbProfessor.TabStop = true;
+            this.rbProfessor.Text = "Professor";
+            this.rbProfessor.UseVisualStyleBackColor = true;
+            this.rbProfessor.CheckedChanged += new System.EventHandler(this.rbProfessor_CheckedChanged);
+            // 
+            // rbAluno
+            // 
+            this.rbAluno.AutoSize = true;
+            this.rbAluno.Location = new System.Drawing.Point(6, 22);
+            this.rbAluno.Name = "rbAluno";
+            this.rbAluno.Size = new System.Drawing.Size(57, 19);
+            this.rbAluno.TabIndex = 20;
+            this.rbAluno.TabStop = true;
+            this.rbAluno.Text = "Aluno";
+            this.rbAluno.UseVisualStyleBackColor = true;
+            this.rbAluno.CheckedChanged += new System.EventHandler(this.rbAluno_CheckedChanged);
             // 
             // label6
             // 
@@ -288,7 +320,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 23);
             this.txtEmail.TabIndex = 9;
-            this.txtEmail.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox4_MaskInputRejected);
             // 
             // txtCpf
             // 
@@ -314,6 +345,8 @@
             this.pnProfessor.PerformLayout();
             this.pnPessoa.ResumeLayout(false);
             this.pnPessoa.PerformLayout();
+            this.painel.ResumeLayout(false);
+            this.painel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,12 +373,14 @@
         private Label label8;
         private Label label9;
         private Label label10;
-        private MaskedTextBox maskedTextBox1;
-        private MaskedTextBox maskedTextBox2;
+        private MaskedTextBox txtRa;
+        private MaskedTextBox txtCurso;
         private Label label11;
         private Label label12;
         private MaskedTextBox maskedTextBox3;
         private MaskedTextBox maskedTextBox4;
-        private GroupBox groupBox2;
+        private GroupBox painel;
+        private RadioButton rbProfessor;
+        private RadioButton rbAluno;
     }
 }
