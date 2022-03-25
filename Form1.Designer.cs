@@ -77,7 +77,7 @@
             this.pnAluno.Controls.Add(this.txtRa);
             this.pnAluno.Controls.Add(this.txtCurso);
             this.pnAluno.Controls.Add(this.label7);
-            this.pnAluno.Location = new System.Drawing.Point(272, 12);
+            this.pnAluno.Location = new System.Drawing.Point(352, 12);
             this.pnAluno.Name = "pnAluno";
             this.pnAluno.Size = new System.Drawing.Size(249, 353);
             this.pnAluno.TabIndex = 9;
@@ -132,12 +132,11 @@
             this.pnProfessor.Controls.Add(this.maskedTextBox3);
             this.pnProfessor.Controls.Add(this.maskedTextBox4);
             this.pnProfessor.Controls.Add(this.label8);
-            this.pnProfessor.Location = new System.Drawing.Point(527, 12);
+            this.pnProfessor.Location = new System.Drawing.Point(666, 12);
             this.pnProfessor.Name = "pnProfessor";
             this.pnProfessor.Size = new System.Drawing.Size(252, 353);
             this.pnProfessor.TabIndex = 10;
             this.pnProfessor.Visible = false;
-            this.pnProfessor.Paint += new System.Windows.Forms.PaintEventHandler(this.pnProfessor_Paint);
             // 
             // label11
             // 
@@ -191,7 +190,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 457);
+            this.label1.Location = new System.Drawing.Point(10, 368);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 6;
@@ -208,6 +207,7 @@
             // 
             this.pnPessoa.Controls.Add(this.painel);
             this.pnPessoa.Controls.Add(this.label6);
+            this.pnPessoa.Controls.Add(this.label1);
             this.pnPessoa.Controls.Add(this.btnEnviar);
             this.pnPessoa.Controls.Add(this.label5);
             this.pnPessoa.Controls.Add(this.label4);
@@ -219,7 +219,7 @@
             this.pnPessoa.Controls.Add(this.txtRg);
             this.pnPessoa.Location = new System.Drawing.Point(2, 12);
             this.pnPessoa.Name = "pnPessoa";
-            this.pnPessoa.Size = new System.Drawing.Size(273, 423);
+            this.pnPessoa.Size = new System.Drawing.Size(273, 496);
             this.pnPessoa.TabIndex = 8;
             // 
             // painel
@@ -270,7 +270,7 @@
             // 
             // btnEnviar
             // 
-            this.btnEnviar.Location = new System.Drawing.Point(116, 218);
+            this.btnEnviar.Location = new System.Drawing.Point(117, 206);
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.Size = new System.Drawing.Size(75, 23);
             this.btnEnviar.TabIndex = 14;
@@ -331,10 +331,10 @@
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(988, 509);
             this.Controls.Add(this.pnProfessor);
             this.Controls.Add(this.pnAluno);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pnPessoa);
             this.Name = "Form1";
             this.Text = "Exemplo POO";
@@ -348,7 +348,6 @@
             this.painel.ResumeLayout(false);
             this.painel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

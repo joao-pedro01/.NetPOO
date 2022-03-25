@@ -13,6 +13,7 @@ namespace ExemploPOO
         {
             //(string _nome, string _rg, string _cpf, string _email)
             Aluno aluno = new Aluno();
+            Animal animal = new Animal();
 
             if (tipo == TIPOPESSOA.ALUNO)
             {
@@ -21,18 +22,33 @@ namespace ExemploPOO
                     EMAIL = txtEmail.Text,
                     CPF = txtCpf.Text,
                     CURSO = txtCurso.Text,
-                    RA = txtRa.Text
+                    RA = txtRa.Text,
+                    RG = txtRg.Text
                 };
             }
 
             Pessoa pessoa = new Pessoa(txtNome.Text, txtRg.Text, txtCpf.Text, txtEmail.Text);
 
-            ExibirObj(pessoa);
+            ExibirObj(aluno);
         }
         
-        public void ExibirObj(Pessoa pessoa)
+        //Label text
+        public void ExibirObj(Object objeto)
         {
-            label1.Text = "\nNome: " + pessoa.NOME + "\nE-mail: " + pessoa.EMAIL + "\nRG: " + pessoa.RG + "\nCPF: " + pessoa.CPF;
+            Aluno aluno = new Aluno();
+            Animal animal = new Animal();
+            string texto = "";
+            if (objeto.GetType() == aluno.GetType())
+            {
+                aluno = (Aluno)objeto;
+                texto = $"\nNome: { aluno.NOME} \nE - mail: { aluno.EMAIL} \nRG: {aluno.RG} \nCPF: {aluno.CPF} \nRA: {aluno.RA} \nCurso: {aluno.CURSO}";
+
+                label1.Text = texto;
+
+                //label1.Text = "\nNome: " + aluno.NOME + "\nE-mail: " + aluno.EMAIL + "\nRG: " + aluno.RG + "\nCPF: " + aluno.CPF + "\nRA: " + aluno.RA + "\nCurso: " + aluno.CURSO;
+            }
+
+            //pessoa = new Pessoa();
         }
 
         private void rbAluno_CheckedChanged(object sender, EventArgs e)
@@ -47,10 +63,11 @@ namespace ExemploPOO
 
         private void validaPessoa()
         {
-            const int aluno = 1;
-            const int professor = 2;
+            //forma de uso não indicada
+            //const int aluno = 1;
+            //const int professor = 2;
 
-            if(rbAluno.Checked == true)
+            if (rbAluno.Checked == true)
             {
                 pnProfessor.Visible = false;
                 pnAluno.Visible = true;
@@ -62,11 +79,6 @@ namespace ExemploPOO
                 pnAluno.Visible = false;
                 this.tipo = TIPOPESSOA.PROFESSOR;
             }
-        }
-
-        private void pnProfessor_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
