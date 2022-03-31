@@ -6,6 +6,7 @@ namespace ExemploPOO
 
         public Form1()
         {
+            this.WindowState = FormWindowState.Maximized;// Inicia o código em tela cheia
             InitializeComponent();
         }
 
@@ -38,7 +39,9 @@ namespace ExemploPOO
             Aluno aluno = new Aluno();
             Animal animal = new Animal();
             string texto = "";
-            if (objeto.GetType() == aluno.GetType())
+            bool validaDados = validadados();
+
+            if (objeto.GetType() == aluno.GetType() || validaDados)
             {
                 aluno = (Aluno)objeto;
                 texto = $"\nNome: { aluno.NOME} \nE - mail: { aluno.EMAIL} \nRG: {aluno.RG} \nCPF: {aluno.CPF} \nRA: {aluno.RA} \nCurso: {aluno.CURSO}";
@@ -46,18 +49,60 @@ namespace ExemploPOO
                 label1.Text = texto;
                 //label1.Text = "\nNome: " + aluno.NOME + "\nE-mail: " + aluno.EMAIL + "\nRG: " + aluno.RG + "\nCPF: " + aluno.CPF + "\nRA: " + aluno.RA + "\nCurso: " + aluno.CURSO;
 
+                // no geral toda vez que tiver queries, conversão e/ou chamada de recurso externo, utilizamos cry cath
                 string diretorio = @"c:\exemplo";
-                if (Directory.Exists(diretorio))
+                if (!Directory.Exists(diretorio))
                 {
-                    Directory.CreateDirectory(diretorio);
+                    string[] linha = { aluno.NOME, aluno.EMAIL, aluno.RG, aluno.CPF, aluno.RA, aluno.CURSO };
+                    try
+                    {
+                        Directory.CreateDirectory(diretorio);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("Erro ao criar o diretório" + e.Message);
+                    }
+
+                    try
+                    {
+                        File.WriteAllLines($"{diretorio}\\exemplo.txt", linha);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("Erro ao criar o arquivo" + e.Message);
+                    }
+
+                    MessageBox.Show("Aluno cadastrado com sucesso!!! ");
                 }
-                string[] linha = { aluno.NOME, aluno.EMAIL, aluno.RG, aluno.CPF, aluno.RA, aluno.CURSO };
-                File.WriteAllLines($"{diretorio}\\exemplo.txt",linha);
             }
 
             //pessoa = new Pessoa();
         }
 
+        private bool validadados()
+        {
+            string mensagem = "";
+            bool result = true;
+
+            if (String.IsNullOrEmpty(txtNome.Text) || txtNome.Text.Length == 0)
+            {
+                mensagem += "O campo NOME não pode estar vazio";
+                
+                result = false;
+            }
+            if (String.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text.Length == 0)
+            {
+                mensagem += "\nO campo EMAIL não pode estar vazio";
+                result = false;
+            }
+            if (!txtEmail.Text.Contains("@"))
+            {
+                mensagem += "\nUtilize um e-mail válido!";
+                result = false;
+            }
+            MessageBox.Show(mensagem, "Erro ao Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return result;
+        }
         private void rbAluno_CheckedChanged(object sender, EventArgs e)
         {
             validaPessoa();
