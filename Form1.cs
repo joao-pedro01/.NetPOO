@@ -53,30 +53,30 @@ namespace ExemploPOO
                 string diretorio = @"c:\exemplo";
                 if (!Directory.Exists(diretorio))
                 {
-                    string[] linha = { aluno.NOME, aluno.EMAIL, aluno.RG, aluno.CPF, aluno.RA, aluno.CURSO };
-                    try
-                    {
-                        Directory.CreateDirectory(diretorio);
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception("Erro ao criar o diretório" + e.Message);
-                    }
-
-                    try
-                    {
-                        File.WriteAllLines($"{diretorio}\\exemplo.txt", linha);
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception("Erro ao criar o arquivo" + e.Message);
-                    }
-
-                    MessageBox.Show("Aluno cadastrado com sucesso!!! ");
+                    Directory.CreateDirectory(diretorio);
                 }
+                string[] linha = { aluno.NOME, aluno.EMAIL, aluno.RG, aluno.CPF, aluno.RA, aluno.CURSO };
+                try
+                {
+                    Directory.CreateDirectory(diretorio);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Erro ao criar o diretório" + e.Message);
+                }
+
+                try
+                {
+                    File.WriteAllLines($"{diretorio}\\exemplo.txt", linha);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Erro ao criar o arquivo" + e.Message);
+                }
+
+                MessageBox.Show("Aluno cadastrado com sucesso!!! ");
             }
 
-            //pessoa = new Pessoa();
         }
 
         private bool validadados()
@@ -100,7 +100,10 @@ namespace ExemploPOO
                 mensagem += "\nUtilize um e-mail válido!";
                 result = false;
             }
-            MessageBox.Show(mensagem, "Erro ao Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!result)
+            {
+                MessageBox.Show(mensagem, "Erro ao Cadastrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
             return result;
         }
         private void rbAluno_CheckedChanged(object sender, EventArgs e)
