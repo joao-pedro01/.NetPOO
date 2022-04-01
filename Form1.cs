@@ -39,14 +39,19 @@ namespace ExemploPOO
             Aluno aluno = new Aluno();
             Animal animal = new Animal();
             string texto = "";
+<<<<<<< HEAD
             bool validaDados = validadados();
 
             if (objeto.GetType() == aluno.GetType() || validaDados)
+=======
+            if (objeto.GetType() == aluno.GetType())
+>>>>>>> 1828cc8d70afb40da794da2e7f04b7c142415ba3
             {
                 aluno = (Aluno)objeto;
                 texto = $"\nNome: { aluno.NOME} \nE - mail: { aluno.EMAIL} \nRG: {aluno.RG} \nCPF: {aluno.CPF} \nRA: {aluno.RA} \nCurso: {aluno.CURSO}";
 
                 label1.Text = texto;
+<<<<<<< HEAD
                 //label1.Text = "\nNome: " + aluno.NOME + "\nE-mail: " + aluno.EMAIL + "\nRG: " + aluno.RG + "\nCPF: " + aluno.CPF + "\nRA: " + aluno.RA + "\nCurso: " + aluno.CURSO;
 
                 // no geral toda vez que tiver queries, conversão e/ou chamada de recurso externo, utilizamos cry cath
@@ -77,6 +82,13 @@ namespace ExemploPOO
                 MessageBox.Show("Aluno cadastrado com sucesso!!! ");
             }
 
+=======
+
+                //label1.Text = "\nNome: " + aluno.NOME + "\nE-mail: " + aluno.EMAIL + "\nRG: " + aluno.RG + "\nCPF: " + aluno.CPF + "\nRA: " + aluno.RA + "\nCurso: " + aluno.CURSO;
+            }
+
+            //pessoa = new Pessoa();
+>>>>>>> 1828cc8d70afb40da794da2e7f04b7c142415ba3
         }
 
         private bool validadados()
